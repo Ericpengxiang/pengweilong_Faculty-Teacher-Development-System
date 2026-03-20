@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teacher.mapper.TeacherArchiveMapper">
+
+    <!-- 按年份统计 -->
+    <select id="countByYear" resultType="map">
+        SELECT a.year AS `year`, COUNT(*) AS count
+        FROM teacher_archive a
+        WHERE a.deleted = 0 AND a.status = 1
+        <if test="teacherId != null">
+            AND a.teacher_id = #{teacherId}
+        </if>
+        GROUP BY a.year
+        ORDER BY a.year
+    </select>
+
+    <!-- 按类型统计（使用 type_name） -->
+    <select id="countByType" resultType="map">
+        SELECT t.type_name AS `type`, COUNT(*) AS count
+        FROM teacher_archive a
+        LEFT JOIN archive_type t ON a.type_id = t.type_id AND t.deleted = 0
+        WHERE a.deleted = 0 AND a.status = 1
+        <if test="teacherId != null">
+            AND a.teacher_id = #{teacherId}
+        </if>
+        GROUP BY a.type_id, t.type_name
+    </select>
+
+    <!-- 教师成果排名 -->
+    <select id="rankByArchiveCount" resultType="map">
+        SELECT u.name AS teacherName, COUNT(a.archive_id) AS count
+        FROM user u
+        LEFT JOIN teacher_archive a ON u.user_id = a.teacher_id AND a.deleted = 0 AND a.status = 1
+        WHERE u.role = 'teacher' AND u.deleted = 0
+        GROUP BY u.user_id
+        ORDER BY count DESC
+        LIMIT 10
+    </select>
+</mapper>

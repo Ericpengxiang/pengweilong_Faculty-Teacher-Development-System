@@ -1,0 +1,118 @@
+/* ===================================================
+   高校教师成长档案管理系统 - 全局样式
+   设计风格：新中式学院风 | 主色：深蓝 #1a3a4a
+   =================================================== */
+
+page {
+  background-color: #f4f2ee;
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-size: 28rpx;
+  color: #1a1a1a;
+}
+
+.container {
+  padding: 24rpx;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(26, 58, 74, 0.08);
+}
+
+.btn-primary {
+  background: #1a3a4a;
+  color: #ffffff;
+  border-radius: 12rpx;
+}
+.btn-primary::after { border: none; }
+
+.btn-danger {
+  background: #ff4d4f;
+  color: #ffffff;
+  border-radius: 12rpx;
+}
+.btn-danger::after { border: none; }
+
+.btn-outline {
+  background: transparent;
+  color: #1a3a4a;
+  border: 2rpx solid #1a3a4a;
+  border-radius: 12rpx;
+}
+.btn-outline::after { border: none; }
+
+.form-item { margin-bottom: 32rpx; }
+
+.label {
+  display: block;
+  font-size: 26rpx;
+  color: #666666;
+  margin-bottom: 12rpx;
+  font-weight: 500;
+}
+
+.input {
+  background: #f8f7f5;
+  border: 2rpx solid #e8e4dc;
+  border-radius: 12rpx;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textarea {
+  background: #f8f7f5;
+  border: 2rpx solid #e8e4dc;
+  border-radius: 12rpx;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 160rpx;
+}
+
+.picker {
+  background: #f8f7f5;
+  border: 2rpx solid #e8e4dc;
+  border-radius: 12rpx;
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+  color: #1a1a1a;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: 100rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+.tag-pending { background: #e6f7ff; color: #1890ff; }
+.tag-success { background: #f6ffed; color: #52c41a; }
+.tag-danger  { background: #fff2f0; color: #ff4d4f; }
+
+.empty {
+  text-align: center;
+  color: #999999;
+  padding: 100rpx 0;
+  font-size: 28rpx;
+}
+.loading {
+  text-align: center;
+  color: #999999;
+  padding: 60rpx 0;
+  font-size: 26rpx;
+}
+.divider {
+  height: 2rpx;
+  background: #e8e4dc;
+  margin: 24rpx 0;
+}

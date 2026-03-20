@@ -1,0 +1,55 @@
+<view class="container" wx:if="{{detail}}">
+  <!-- 头部 -->
+  <view class="detail-header">
+    <view class="detail-title">{{detail.title}}</view>
+    <view class="detail-status detail-status-{{detail.status}}">
+      {{detail.status === 1 ? "✓ 已通过" : detail.status === 2 ? "✗ 已拒绝" : "⏳ 待审核"}}
+    </view>
+  </view>
+
+  <!-- 详情信息 -->
+  <view class="info-card">
+    <view class="info-row">
+      <view class="info-key">类型</view>
+      <view class="info-val">{{detail.type}}</view>
+    </view>
+    <view class="info-row">
+      <view class="info-key">年份</view>
+      <view class="info-val">{{detail.year}} 年</view>
+    </view>
+    <view class="info-row">
+      <view class="info-key">教师</view>
+      <view class="info-val">{{detail.teacherName}}</view>
+    </view>
+    <view class="info-row" wx:if="{{detail.description}}">
+      <view class="info-key">描述</view>
+      <view class="info-val">{{detail.description}}</view>
+    </view>
+    <view class="info-row" wx:if="{{detail.fileUrl}}">
+      <view class="info-key">附件</view>
+      <view class="info-val">已上传附件</view>
+    </view>
+    <view class="info-row">
+      <view class="info-key">审核部门</view>
+      <view class="info-val">
+        <view class="dept-tag">{{reviewDept}}</view>
+        <view class="dept-hint">负责对此类型档案进行审核</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按鈕 -->
+  <view class="actions">
+    <button class="btn-approve" wx:if="{{userInfo.role === 'admin' && detail.status === 0}}"
+            data-status="1" bindtap="approve">通 过</button>
+    <button class="btn-reject" wx:if="{{userInfo.role === 'admin' && detail.status === 0}}"
+            data-status="2" bindtap="approve">拒 绝</button>
+    <button class="btn-edit"
+            wx:if="{{(userInfo.role === 'admin' || detail.teacherId === userInfo.userId) && detail.status !== 2}}"
+            bindtap="goEdit">编 辑</button>
+    <button class="btn-delete"
+            wx:if="{{userInfo.role === 'admin' || detail.teacherId === userInfo.userId}}"
+            bindtap="deleteArchive">删 除</button>
+  </view>
+</view>
+<view class="loading" wx:if="{{!detail}}">加载中...</view>

@@ -1,0 +1,22 @@
+<view class="container">
+  <!-- 用户横幅 -->
+  <view class="user-banner">
+    <view class="avatar">{{userInfo.name ? userInfo.name[0] : "?"}}</view>
+    <view class="user-info">
+      <view class="user-name">{{userInfo.name || userInfo.username}}</view>
+      <view class="user-role">{{userInfo.role === "admin" ? "系统管理员" : "教师"}}</view>
+      <view class="user-username">@{{userInfo.username}}</view>
+    </view>
+  </view>
+
+  <!-- 菜单 -->
+  <view class="menu-card">
+    <view class="menu-row" bindtap="goEdit">
+      <text class="menu-row-text">修改个人信息</text>
+      <text class="menu-row-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 退出 -->
+  <button class="logout-btn" bindtap="logout">退出登录</button>
+</view>

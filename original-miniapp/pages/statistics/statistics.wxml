@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 头部 -->
+  <view class="page-header">
+    <view class="page-header-title">数据统计</view>
+    <view class="page-header-sub">成果趋势 · 类型分布 · 教师排名</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <block wx:if="{{!loading}}">
+    <!-- 年度趋势 -->
+    <view class="section-card">
+      <view class="section-title">年度成果趋势</view>
+      <block wx:if="{{yearTrend.length > 0}}">
+        <view class="bar-item" wx:for="{{yearTrend}}" wx:key="year">
+          <text class="bar-label">{{item.year}}</text>
+          <view class="bar-wrap">
+            <view class="bar-fill" style="width: {{item.count * 10 > 100 ? 100 : item.count * 10}}%"></view>
+          </view>
+          <text class="bar-value">{{item.count}}</text>
+        </view>
+      </block>
+      <view class="empty-tip" wx:else>暂无数据</view>
+    </view>
+
+    <!-- 类型分布 -->
+    <view class="section-card">
+      <view class="section-title">成果类型分布</view>
+      <block wx:if="{{typeDistribution.length > 0}}">
+        <view class="type-item" wx:for="{{typeDistribution}}" wx:key="type">
+          <text class="type-name">{{item.type}}</text>
+          <text class="type-count">{{item.count}} 项</text>
+        </view>
+      </block>
+      <view class="empty-tip" wx:else>暂无数据</view>
+    </view>
+
+    <!-- 教师排名 -->
+    <view class="section-card">
+      <view class="section-title">教师成果排名</view>
+      <block wx:if="{{teacherRank.length > 0}}">
+        <view class="rank-item" wx:for="{{teacherRank}}" wx:key="teacherName">
+          <view class="rank-num rank-num-{{index + 1}}">{{index + 1}}</view>
+          <text class="rank-name">{{item.teacherName}}</text>
+          <text class="rank-count">{{item.count}} 项</text>
+        </view>
+      </block>
+      <view class="empty-tip" wx:else>暂无数据</view>
+    </view>
+  </block>
+</view>

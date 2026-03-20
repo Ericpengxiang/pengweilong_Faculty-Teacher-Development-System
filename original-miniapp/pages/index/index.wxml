@@ -1,0 +1,50 @@
+<view class="container" wx:if="{{userInfo}}">
+  <!-- 欢迎横幅 -->
+  <view class="welcome">
+    <view class="welcome-top">
+      <image class="welcome-logo" src="/images/logo.png" mode="aspectFit" />
+      <view class="welcome-info">
+        <view class="welcome-school">西安培华学院</view>
+        <view class="welcome-name">欢迎，{{userInfo.name || userInfo.username}}</view>
+        <view class="welcome-role">{{userInfo.role === "admin" ? "系统管理员" : "教师"}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计数字 -->
+  <view class="stat-row">
+    <view class="stat-card">
+      <view class="stat-num">{{archiveCount}}</view>
+      <view class="stat-label">我的档案</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{pendingCount}}</view>
+      <view class="stat-label">待审核</view>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="section-title">快捷入口</view>
+  <view class="menu-grid">
+    <view class="menu-item" bindtap="goArchive">
+      <view class="menu-icon">📁</view>
+      <view class="menu-name">我的档案</view>
+      <view class="menu-desc">查看和管理档案</view>
+    </view>
+    <view class="menu-item" bindtap="goAdd">
+      <view class="menu-icon">➕</view>
+      <view class="menu-name">新增档案</view>
+      <view class="menu-desc">添加成果记录</view>
+    </view>
+    <view class="menu-item" bindtap="goStatistics">
+      <view class="menu-icon">📊</view>
+      <view class="menu-name">数据统计</view>
+      <view class="menu-desc">成果趋势分析</view>
+    </view>
+    <view class="menu-item" bindtap="goProfile">
+      <view class="menu-icon">👤</view>
+      <view class="menu-name">个人中心</view>
+      <view class="menu-desc">修改个人信息</view>
+    </view>
+  </view>
+</view>

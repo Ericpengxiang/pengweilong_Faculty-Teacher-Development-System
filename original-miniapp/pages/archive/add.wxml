@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="page-title">{{isEdit ? "编辑档案" : "新增档案"}}</view>
+
+  <view class="form-card">
+    <view class="form-item">
+      <text class="form-label">标题 *</text>
+      <input class="form-input" placeholder="请输入档案标题" value="{{title}}" bindinput="inputTitle" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">成果类型 *</text>
+      <picker mode="selector" range="{{types}}" value="{{typeIdx}}" bindchange="inputType">
+        <view class="form-picker">
+          <text>{{type || "请选择类型"}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">年份 *</text>
+      <picker mode="date" fields="year" value="{{year + ''}}" bindchange="inputYear">
+        <view class="form-picker">
+          <text>{{year ? year + "年" : "请选择年份"}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">描述</text>
+      <textarea class="form-textarea" placeholder="请输入档案描述（选填）"
+                value="{{description}}" bindinput="inputDesc" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">附件（选填）</text>
+      <view class="file-row">
+        <button class="file-btn" bindtap="chooseFile">选择文件</button>
+        <text class="file-tip" wx:if="{{fileUrl}}">✓ 已上传</text>
+      </view>
+    </view>
+
+    <button class="submit-btn" bindtap="submit">{{isEdit ? "保存修改" : "提 交"}}</button>
+  </view>
+</view>

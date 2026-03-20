@@ -1,0 +1,44 @@
+<view class="container">
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <picker class="filter-item" mode="selector" range="{{years}}" value="{{yearIndex}}" bindchange="filterYear">
+      <view>{{years[yearIndex] === "全部" ? "年份" : years[yearIndex]+"年"}}</view>
+    </picker>
+    <picker class="filter-item" mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="filterType">
+      <view>{{types[typeIndex] === "全部" ? "类型" : types[typeIndex]}}</view>
+    </picker>
+  </view>
+
+  <!-- 新增按钮 -->
+  <view class="add-btn">
+    <button bindtap="goAdd">+ 新增档案</button>
+  </view>
+
+  <!-- 档案列表 -->
+  <block wx:if="{{list.length > 0}}">
+    <view class="archive-item" wx:for="{{list}}" wx:key="archiveId"
+          data-id="{{item.archiveId}}" bindtap="goDetail">
+      <view class="item-header">
+        <view class="item-title">{{item.title}}</view>
+        <view class="status-tag status-{{item.status}}">
+          {{item.status === 1 ? "已通过" : item.status === 2 ? "已拒绝" : "待审核"}}
+        </view>
+      </view>
+      <view class="item-meta">
+        <view class="meta-type">{{item.type}}</view>
+        <text>{{item.year}}年</text>
+        <text wx:if="{{item.teacherName}}">{{item.teacherName}}</text>
+      </view>
+      <view class="item-dept">审核部门：{{item.reviewDept}}</view>
+      <view class="item-desc" wx:if="{{item.description}}">{{item.description}}</view>
+    </view>
+  </block>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:else>
+    <view class="empty-icon">📂</view>
+    <view class="empty-text">暂无档案，点击上方按钮新增</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+</view>

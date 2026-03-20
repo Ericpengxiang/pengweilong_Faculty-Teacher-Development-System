@@ -1,0 +1,54 @@
+# ============================================================
+# 高校教师成长档案管理系统 - 应用配置
+# ============================================================
+# 【重要】运行前请修改以下配置：
+#   1. datasource.url 中的 localhost 改为你的 MySQL 服务器地址
+#   2. datasource.username / password 改为你的 MySQL 账号密码
+#   3. file.upload-path 改为你本机的绝对路径（见下方说明）
+# ============================================================
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: teacher-archive-backend
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 【修改】将 localhost 改为运行 MySQL 的机器 IP
+    url: jdbc:mysql://localhost:3306/teacher_archive?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.teacher.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# JWT 配置
+jwt:
+  secret: teacher-archive-system-secret-key-2024-very-long-secret
+  expiration: 86400000  # 24小时，单位毫秒
+
+# 文件上传路径
+# 【修改】Windows 示例：C:/teacher-archive/uploads
+# 【修改】Mac/Linux 示例：/Users/yourname/teacher-archive/uploads
+file:
+  upload-path: ./uploads
